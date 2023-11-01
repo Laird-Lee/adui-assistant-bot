@@ -1,8 +1,13 @@
 {
   "name": "adui-assistant-bot",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "一个QQ工具Bot",
+  "keywords": [
+    "adui",
+    "QQ",
+    "Bot"
+  ],
+  "author": "ADui",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -31,10 +36,16 @@
     "@nestjs/typeorm": "^10.0.0",
     "@nestjs/websockets": "^10.2.7",
     "axios": "^1.6.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "mysql2": "^3.6.2",
+    "nanoid": "^3.3.6",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
+    "ws": "^8.14.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
@@ -44,6 +55,7 @@
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
     "@types/supertest": "^2.0.12",
+    "@types/ws": "^8.5.8",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.42.0",
