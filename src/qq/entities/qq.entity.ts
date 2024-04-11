@@ -32,10 +32,10 @@ export class QQ extends EntityHelper {
 
   @CreateDateColumn({
     transformer: {
-      to(value: any): any {
+      to(value: Date): Date {
         return value;
       },
-      from(value: any): any {
+      from(value: Date): string {
         return moment(value).format('YYYY-MM-DD HH:mm:ss');
       },
     },
@@ -44,10 +44,10 @@ export class QQ extends EntityHelper {
 
   @UpdateDateColumn({
     transformer: {
-      to(value: any): any {
+      to(value: Date): Date {
         return value;
       },
-      from(value: any): any {
+      from(value: Date): string {
         return moment(value).format('YYYY-MM-DD HH:mm:ss');
       },
     },

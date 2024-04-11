@@ -31,20 +31,24 @@ export class WebsocketsService {
       const jsonData = JSON.parse(data.toString());
       switch (jsonData.op) {
         case OpcodeEnum.Hello:
-          console.log('[MESSAGE] 消息接收:', JSON.parse(data.toString()));
+          console.log('[HELLO] 消息接收:', JSON.parse(data.toString()));
           void this.getSession();
           break;
         case OpcodeEnum['Invalid Session']:
           console.log('[ERROR] 鉴权失败:', jsonData);
           break;
+        case OpcodeEnum['Heartbeat ACK']:
+          console.log('[Heartbeat ACK] 心跳检查:', jsonData);
+          break;
         default:
           console.log('[MESSAGE] 消息接收:', JSON.parse(data.toString()));
+          this.sendHeartbeatAck(jsonData.s);
           return;
       }
     });
 
     this.wsClient.on('close', () => {
-      console.log('[CLOSE] 连接关闭');
+      console.log('[CLOSED] 连接关闭');
       // Implement reconnection logic if necessary
     });
 
@@ -109,15 +113,23 @@ export class WebsocketsService {
         op: OpcodeEnum.Identify,
         d: {
           token: `QQBot ${qq.token}`,
-          intents: 513,
+          intents: 1812730883,
           shard: [0, 1],
           properties: {},
         },
       };
-      console.log(JSON.stringify(data));
       this.wsClient.send(JSON.stringify(data));
     }
   }
+
+  async sendHeartbeatAck(s: number) {
+    const data: PayloadType = {
+      op: OpcodeEnum.Heartbeat,
+      d: s,
+    };
+    this.wsClient.send(JSON.stringify(data));
+  }
+
   create(createWebsocketDto: CreateWebsocketDto) {
     return 'This action adds a new websocket';
   }

@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from './config/database.config';
 import { TypeormConfigService } from './database/typeorm-config.service';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { SessionModule } from './session/session.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
       }),
     }),
     QQModule,
+    SessionModule,
   ],
   controllers: [],
   providers: [],
